@@ -73,3 +73,8 @@ const timePased = (datePasado, dateNow) => {
     return `Han pasado ${days} días, ${hours} horas, ${minutes} minutos y ${seconds} segundos desde ${date}`;
 }
 console.log(timePased('2025-01-01', dateNow));
+
+/**
+ * 7. Si no lo has hecho, modifica la función anterior para que no salga la información que no sea relevante. Por ejemplo, si solo han pasado
+ * 10 segundos, no debería decir ni los días, las horas ni los minutos.
+ */
