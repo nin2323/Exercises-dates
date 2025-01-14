@@ -1,14 +1,16 @@
 /**
  * 1. Crea una función que sume un número de días a una fecha.
  */
-const now = new Date();
+
 const daysSumDate = (date, days) => {
+    const now = new Date();
     const resultDate = new Date(date);
     resultDate.setDate(resultDate.getDate() + days);  // El método setDate permite establecer el día del mes. Al sumar días, JavaScript maneja automáticamente los cambios de mes y año si es necesario
     return resultDate;
 }
-const resultDate = daysSumDate(now, 20);
-console.log("Nueva hora: ", resultDate.toLocaleString('es-ES', { timeZone: 'Europe/Madrid' }));
+/** const resultDate = daysSumDate(now, 20);
+console.log(resultDate.toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })); */
+console.log(daysSumDate(new Date(), 28))
 
 /**
  * 2. Crea una función que reste un número de días a una fecha.
@@ -20,7 +22,7 @@ const daysSumDate = (date, days) => {
     return resultDate;
 }
 const resultDate = daysSumDate(now, 2);
-console.log("Nueva hora: ", resultDate.toLocaleString('es-ES', { timeZone: 'Europe/Madrid' }));
+console.log(resultDate.toLocaleString('es-ES', { timeZone: 'Europe/Madrid' }));
 
 /**
  * 3. Modifica la función del ejercicio 1 para que sea más genérica y que permita sumar días, horas, minutos o segundos
@@ -28,11 +30,14 @@ console.log("Nueva hora: ", resultDate.toLocaleString('es-ES', { timeZone: 'Euro
 const now = new Date();
 const daysSumDate = (date, {days = 0, hours = 0, minutes = 0, seconds = 0}) => { // Añadiendo los parametros que quieras sumar o restar.
     const resultDate = new Date(date);
-    resultDate.setTime(resultDate.getTime() + hours * 60 * 60 * 1000);  //Sumar horas en milisegundos 
+    resultDate.setTime(resultDate.getTime() + days * 24 * 60 * 60 * 1000);
+    resultDate.setTime(resultDate.getTime() + hours * 60 * 60 * 1000);   //Sumar horas en milisegundos
+    resultDate.setTime(resultDate.getTime() + minutes * 60 * 1000); 
+    resultDate.setTime(resultDate.getTime() + seconds * 1000);   
     return resultDate;
 }
-const resultDate = daysSumDate(now, { hours: 1 });
-console.log("Nueva hora: ", resultDate.toLocaleString('es-ES', { timeZone: 'Europe/Madrid' }));
+const resultDate = daysSumDate(now, { hours: 1, minutes: 5, seconds:20 });
+console.log(resultDate.toLocaleString('es-ES', { timeZone: 'Europe/Madrid' }));
 
 /**
  * 4.  Modifica la función del ejercicio 2 para que sea más genérica y que permita restar días, horas, minutos o segundos
@@ -49,12 +54,12 @@ console.log(resultDate.toLocaleString('es-ES', { timeZone: 'Europe/Madrid' }));
 /**
  * 5. Crea una función que compruebe si una fecha está entre otras dos fechas.
  */
-const dateBetween = (dateInicio, dateFinal, dateCheck) =>{
-    if(dateCheck >= dateInicio && dateCheck <= dateFinal) {
+const dateBetween = (dateStart, dateFinal, dateCheck) =>{
+    if(dateCheck >= dateStart && dateCheck <= dateFinal) {
         return 'La fecha está entre las dos fechas';
     } return 'La fecha no está entre las dos fechas';
 }
-console.log(dateBetween('2025-01-01', '2025-05-10', '2025-01-15'));
+console.log(dateBetween('2025-01-01', '2025-05-01', '2025-03-01'));
 
 /**
  * 6. Crea una función que devuelva cuánto tiempo ha pasado desde una fecha y la fecha actual en días, horas, minutos y segundos.
@@ -89,17 +94,17 @@ const timePased = (datePasado, dateNow) => {
     const minutes = Math.floor(timeBetweenDates % (1000 * 60 * 60) / (1000 * 60));
     const seconds = Math.floor(timeBetweenDates % (1000 * 60) / 1000);
    
-    const prefij  = difference >= 0 ? 'Faltan' : 'Han pasado' 
+    const prefij  = difference >= 0 ? '' : 'Han pasado' 
     
     const time = [];
-    if (days > 0) time.push(`${days} días`);
-    if (hours > 0)  time.push(`${hours} horas`);
-    if (minutes > 0) time.push(`${minutes} minutos`);
-    if (seconds > 0) time.push(`${seconds} segundos`);
+    if (days >= 0) time.push(`${days} días`);
+    if (hours >= 0)  time.push(`${hours} horas`);
+    if (minutes >= 0) time.push(`${minutes} minutos`);
+    if (seconds >= 0) time.push(`${seconds} segundos`);
       
   return `${prefij} ${time.join(', ')}.`;
 }
-console.log(timePased('2024-12-13T10:14:05', dateNow));
+console.log(timePased('2025-01-14T18:27:05', dateNow));
 
 /**
  * 8. Modifica la función anterior para que se le pueda pasar un objeto que permita desactivar los días, las horas, los minutos o los segundos
