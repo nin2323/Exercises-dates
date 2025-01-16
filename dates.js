@@ -104,7 +104,7 @@ const timePased = (datePasado, dateNow) => {
       
   return `${prefij} ${time.join(', ')}.`;
 }
-console.log(timePased('2025-01-14T18:27:05', dateNow));
+console.log(timePased('2025-01-16T18:27:05', dateNow));
 
 /**
  * 8. Modifica la función anterior para que se le pueda pasar un objeto que permita desactivar los días, las horas, los minutos o los segundos
@@ -190,3 +190,63 @@ const tasks = [
   console.log(completedTasks);
 
 
+
+
+
+/**
+ * 1. Vamos a hacer una función a la que le pasamos un número y nos va a devolver
+ * un array del tamaño igual al número que le pasamos con tareas random.
+ *
+ * Una tarea random es una tarea con un texto aleatorio, por ejemplo "Tarea de prueba 402"
+ * También tiene que tener una fecha random con un mes aleatorio entre 0 y 11, y un dia aleatorio entre 1 y 28
+ * y aleatoriamente también, las tareas pueden estar completadas o no
+ *
+ */
+
+const getRandomTaskArray = (num) => {
+    const taskList = []
+
+    for(let counter = 0; counter <= num; counter++) {
+      const randonNum = Math.round(Math.random() * 50);
+      const randomText = `Tarea de prueba ${randonNum}`
+      const randomDay = Math.floor(Math.random() * 12);
+      const randomMonth = Math.floor(Math.random() * 28);
+      const randomDate = new Date (2025, randomDay, randomMonth);
+      const checkIsCompleted = Math.round(Math.random() * 1);
+
+      console.log(randomDate);
+      console.log(randomText);
+      console.log(checkIsCompleted);
+      
+      taskList.push({
+        task: randomText,
+        date: randomDate,
+        completed: checkIsCompleted === 0 ? true : false 
+      }) 
+     
+    };
+    return taskList;
+};
+console.log(getRandomTaskArray(10));
+
+
+/**
+ * 2. Haz una función que categorice las tareas por mes, y dentro del mes, por día.
+ * Por ejemplo el objeto resultante sería algo así:
+ *  {
+ *    0: {
+ *       1: [ARRAY DE TAREAS]
+ *    }
+ *  }
+ * En [ARRAY DE TAREAS] estarán todas las tareas del día 1 de enero.
+ */
+
+// 1 recorrer el array
+// 2 crear un objeto 
+
+const categorizedTasks = (taskList) => {
+  
+
+}
+
+categorizedTasks(getRandomTaskArray());
