@@ -206,28 +206,24 @@ const tasks = [
 const getRandomTaskArray = (num) => {
     const taskList = []
 
-    for(let counter = 0; counter <= num; counter++) {
+    for(let counter = 1; counter <= num; counter++) {
       const randonNum = Math.round(Math.random() * 50);
       const randomText = `Tarea de prueba ${randonNum}`
-      const randomDay = Math.floor(Math.random() * 12);
-      const randomMonth = Math.floor(Math.random() * 28);
-      const randomDate = new Date (2025, randomDay, randomMonth);
-      const checkIsCompleted = Math.round(Math.random() * 1);
-
-      console.log(randomDate);
-      console.log(randomText);
-      console.log(checkIsCompleted);
+      const randomMonth = Math.floor(Math.random() * 12);
+      const randomDay = Math.floor(Math.random() * 28);
+      const randomDate =  `${randomDay}/${randomMonth}/2025`;
+      const checkIsCompleted = Math.round(Math.random() * 2);
       
       taskList.push({
         task: randomText,
         date: randomDate,
-        completed: checkIsCompleted === 0 ? true : false 
+        completed: checkIsCompleted === 1 ? true : false 
       }) 
      
     };
     return taskList;
 };
-console.log(getRandomTaskArray(10));
+console.log(getRandomTaskArray(3));
 
 
 /**
@@ -244,9 +240,29 @@ console.log(getRandomTaskArray(10));
 // 1 recorrer el array
 // 2 crear un objeto 
 
+const taskList = [
+  {task: 'Tarea de prueba 1', date: '17/8/2025', completed: false} ,
+  {task: 'Tarea de prueba 36', date: '5/2/2025', completed: false} ,
+ { task: 'Tarea de prueba 8', date: '3/10/2025', completed: true}
+]
+
 const categorizedTasks = (taskList) => {
-  
+  const month = '';
+  taskList.forEach(item => {
+    const month = item.date.split('/')[1];
+    return month;
+  }); 
+  return month
+};
 
-}
 
-categorizedTasks(getRandomTaskArray());
+categorizedTasks(getRandomTaskArray(3));
+
+
+// const taskList = {
+//         task: 'hola',
+//         date: '10/4/2025',
+//         completed: true
+// }
+// const month = taskList.date.split('/')[1]
+//     console.log(month)
